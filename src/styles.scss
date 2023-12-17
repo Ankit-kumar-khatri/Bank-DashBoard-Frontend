@@ -1,0 +1,84 @@
+// -----Font family url---------
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800&display=swap");
+
+:root {
+  --custom-FontFamily: "Inter", sans-serif;
+}
+
+// ----Color codes----
+:root {
+  --main-bg-color: #f5f5f5;
+  --darkFont-color: #090832;
+  --lightFont-color: #c1c3cf;
+  --otherDark-color: #000036;
+  --otherLight-color: #ffffff;
+  --mutedText-color: #9096a7;
+}
+
+// ----global scss codes------
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--main-bg-color);
+  font-family: var(--custom-FontFamily);
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 100vh;
+  width: 100vw;
+  // position: fixed;
+  // padding-top: 70px;
+}
+
+.darkFont {
+  color: var(--darkFont-color);
+}
+.lightFont {
+  color: var(--lightFont-color);
+}
+
+// .fa,
+// .fas {
+//   color: var(--otherDark-color);
+// }
+
+.mainPanel {
+  transition: 0.3s;
+  padding: 16px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.openedNav {
+  width: calc(100% - 232px);
+}
+.closedNav {
+  width: calc(100% - 112px);
+}
+
+// --------------------------scrool bar css--------------------
+
+::-webkit-scrollbar {
+  height: 8px;
+  width: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-track:hover {
+  display: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}

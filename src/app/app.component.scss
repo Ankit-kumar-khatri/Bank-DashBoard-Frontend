@@ -1,0 +1,247 @@
+.sidenav {
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #f5f5f5;
+  overflow: hidden;
+  transition: ease-in-out 0.5s;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  text-decoration: none;
+  display: flex;
+  width: max-content;
+  align-items: center;
+  transition: ease-in-out 0.5s;
+  cursor: pointer;
+}
+
+.sidenav {
+  .closebtn,
+  .openbtn {
+    cursor: pointer;
+  }
+}
+
+.fa-chevron-right,
+.fa-chevron-left {
+  font-size: 15px;
+}
+
+.companyName {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #090832;
+  font-size: 18px;
+  font-weight: 900;
+  margin-left: 10px;
+  margin-bottom: 35px;
+  img {
+    margin-right: 5px;
+  }
+}
+.companyName1 {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #090832;
+  font-size: 18px;
+  font-weight: 900;
+  margin-left: 10px;
+  margin-bottom: 35px;
+}
+
+.userName {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #090832;
+  font-size: 15px;
+  font-weight: 700;
+  margin-left: 20px;
+  .userImg {
+    margin-right: 5px;
+  }
+}
+
+.userName1 {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #090832;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.openHr {
+  margin-block: 25px;
+  width: 171px;
+  margin-left: 21px;
+  color: #ececec !important;
+  background: #ececec !important;
+  opacity: 0.4;
+}
+
+.closeHr {
+  margin-block: 25px;
+  margin-left: 13px;
+  color: #ececec !important;
+  background: #ececec !important;
+  opacity: 0.4;
+  width: 54px;
+}
+
+.openSidebarData {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  list-style: none;
+  ul {
+    list-style: none;
+  }
+  li {
+    margin-bottom: 18px;
+    font-size: 14px;
+    font-weight: 600;
+    opacity: 0.5;
+  }
+  & > li {
+    margin-bottom: 25px;
+    font-weight: 700;
+  }
+}
+.closeSidebarData {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style: none;
+  ul {
+    list-style: none;
+  }
+  li {
+    margin-bottom: 18px;
+    font-size: 22px;
+    font-weight: 600;
+    opacity: 0.5;
+  }
+  & > li {
+    margin-bottom: 25px;
+    font-weight: 700;
+    font-size: 14px;
+  }
+}
+
+.openSidebarInnerData {
+  li {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  i {
+    margin-right: 15px;
+  }
+  .fa-toggle-off {
+    margin-left: 25px;
+    font-size: 20px;
+  }
+}
+
+.closeSidebarInnerData {
+  .cstmTooltip {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: fixed;
+    left: 65px;
+    z-index: 1;
+    font-size: 12px;
+  }
+  li {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    &:hover .cstmTooltip {
+      visibility: visible;
+    }
+  }
+  i {
+    margin-right: 15px;
+  }
+  .fa-toggle-off {
+    margin-left: 25px;
+    font-size: 20px;
+  }
+}
+
+.newPaymentOpn {
+  display: flex;
+  justify-content: center;
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 156px;
+    height: 110px;
+    justify-content: center;
+    border: 0.1px dotted #797994;
+    border-width: medium;
+    border-radius: 10px;
+    cursor: pointer;
+    img {
+      margin-bottom: 8px;
+    }
+    span {
+      font-size: 13px;
+      font-weight: 600;
+      color: #090832;
+    }
+  }
+}
+
+.newPaymentCls {
+  display: flex;
+  justify-content: center;
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 8px;
+    justify-content: center;
+    cursor: pointer;
+
+    .cstmTooltip {
+      visibility: hidden;
+      width: 120px;
+      background-color: black;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 0;
+      position: fixed;
+      left: 65px;
+      z-index: 1;
+      font-size: 12px;
+    }
+    &:hover .cstmTooltip {
+      visibility: visible;
+    }
+  }
+}
+
+li {
+  cursor: pointer;
+  &:hover {
+    color: #090832;
+    opacity: 1 !important;
+  }
+}

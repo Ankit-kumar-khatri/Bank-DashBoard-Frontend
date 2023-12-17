@@ -1,0 +1,83 @@
+<div class="bodyPanel">
+
+  <!-- -------Side Nav Code------------ -->
+
+  <div class="sidePanel">
+    <div *ngIf="isSidenavOpen ; else closedContent" class="sidenav" [style.width]="sidenavWidth">
+
+      <div class="companyName">
+        <a><img src="assets\Images\hexa.png" alt="companyImage" width="25"> Hexa Bank</a>
+        <a class="closebtn" (click)="closeNav()"><i class="fas fa-chevron-left"></i></a>
+      </div>
+
+      <div class="userName">
+        <a><img class="userImg" src="assets\Images\user.png" alt="userImage" width="30"> Ankit Khatri</a>
+        <a><img src="assets\Images\up-down-arrow.png" alt="companyImage" width="12"></a>
+      </div>
+
+      <hr class="openHr">
+
+      <ul class="openSidebarData" *ngFor="let item of menuItem">
+        <li>{{item.title}}</li>
+        <ul class="openSidebarInnerData" *ngFor="let elements of item.subMenu">
+          <li *ngIf="elements.title!='Dark Mode'"><i [class]="elements.icon"></i>{{elements.title}}</li>
+          <li *ngIf="elements.title=='Dark Mode'"><i [class]="elements.icon"></i>{{elements.title}}<i
+              class="fas fa-toggle-off"></i></li>
+        </ul>
+        <hr class="openHr">
+      </ul>
+
+      <div class="newPaymentOpn">
+        <div>
+          <img src="assets\Images\plus.png" alt="paymentImage" width="40">
+          <span>New Payment</span>
+        </div>
+      </div>
+
+    </div>
+
+    <ng-template #closedContent>
+      <div class="sidenav" [style.width]="sidenavWidth">
+
+        <div class="companyName1">
+          <a><img src="assets\Images\hexa.png" alt="companyImage" width="25"></a>
+          <a class="openbtn" (click)="openNav()"><i class="fas fa-chevron-right"></i></a>
+        </div>
+
+        <div class="userName1">
+          <a><img src="assets\Images\user.png" alt="userImage" width="30"></a>
+        </div>
+
+
+        <hr class="closeHr">
+
+        <ul class="closeSidebarData" *ngFor="let item of menuItem">
+          <li>{{item.title}}</li>
+          <ul class="closeSidebarInnerData" *ngFor="let elements of item.subMenu">
+            <li><i [class]="elements.icon"></i> <span class="cstmTooltip">{{elements.title}}</span></li>
+          </ul>
+          <hr class="closeHr">
+        </ul>
+
+        <div class="newPaymentCls">
+          <div>
+            <img src="assets\Images\plus.png" alt="paymentImage" width="40">
+            <span class="cstmTooltip">New Payment</span>
+          </div>
+        </div>
+
+      </div>
+    </ng-template>
+
+
+
+  </div>
+
+
+</div>
+
+<!-- -------Main panel code--------- -->
+
+<div class="mainPanel" [style.margin-left]="sidenavWidth" [ngClass]="checkWidth ? 'openedNav ': 'closedNav'">
+  <router-outlet></router-outlet>
+</div>

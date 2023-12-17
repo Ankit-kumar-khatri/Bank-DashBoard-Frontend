@@ -1,0 +1,212 @@
+<section class="mainSection grid-container">
+  <!-- ---------Top navigation bar--------- -->
+  <section class="grid-item1">
+    <div class="navBarCls">
+      <ul>
+        <li><a>Overview</a></li>
+        <li>
+          <div class="search-container">
+            <form>
+              <button type="button"><i class="fa fa-search"></i></button>
+              <input type="text" placeholder="Search anything here .." name="search">
+            </form>
+          </div>
+        </li>
+        <li>
+          <div class="navIcons">
+            <i class="far fa-envelope"></i>
+            <i class="far fa-bell"></i>
+          </div>
+        </li>
+
+
+      </ul>
+    </div>
+  </section>
+
+  <!-- ---------Static side bar------ -->
+  <section class="grid-item2">
+    <div class="staticColumn">
+      <div class="header">
+        <ul>
+          <li id="cardName">My Cards:1<small>/2</small></li>
+          <li>
+            <i class="fas fa-chevron-left"></i>
+            <i class="fas fa-chevron-right"></i>
+          </li>
+        </ul>
+      </div>
+      <div class="cardImage">
+        <img src="assets\Images\card.png" alt="cardImage" width="250">
+        <div>
+          <img src="assets\Images\plus.png" alt="paymentImage" width="20">
+          <span>Add New Card</span>
+        </div>
+      </div>
+      <hr class="staticCardLine">
+      <div class="quickAction">
+        <span id="cardName">Quick Actions</span>
+        <ul class="actionIcons">
+          <li><i class="far fa-plus-square"></i>Top Up</li>
+          <li><i class="far fa-paper-plane"></i>Transfer</li>
+          <li><i class="far fa-minus-square"></i>Withdrawal</li>
+        </ul>
+      </div>
+      <hr class="staticCardLine">
+      <div class="savingPlan">
+        <ul>
+          <li id="cardName">Saving Plan</li>
+          <li>
+            <img src="assets\Images\plus.png" alt="addImage" width="20">
+          </li>
+        </ul>
+
+        <div *ngFor="let item of savingPlanData ; let i=index">
+          <ul>
+            <li class="headerTitle"><i [class]="item.icon"></i>
+              <div>{{item.title}} <br><small>Target:${{item.target | number}}</small></div>
+            </li>
+            <li><i class="fas fa-ellipsis-h"></i></li>
+          </ul>
+          <ul>
+            <li>Total:${{item.total | number}}</li>
+            <li>{{(item.total)/(item.target)*100}}%</li>
+          </ul>
+          <div class="progressBarCnt">
+            <div class="progressBar" [style.width]="savingPlanProgressWidth[i] + '%'"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <section class="grid-item3">
+    <div class="totalBalance">
+      <div class="totalBalHead">
+        <ul>
+          <li id="cardName">Total Balance</li>
+          <li>
+            <i class="fas fa-ellipsis-h"></i>
+          </li>
+        </ul>
+      </div>
+      <div class="totalBalData" *ngIf="dataFromApi!">
+        <div class="totalBal">${{getTotalBalance.total_balance | number}}</div>
+        <div class="progressBarCnt">
+          <div class="progressBar" [style.width]="getTotalBalance.payment_done_percentage + '%'"></div>
+        </div>
+        <ul>
+          <li>Monthly payment limit</li>
+          <li>${{getTotalBalance.payment_done_so_far | number}}<span>/{{getTotalBalance.monthly_payment_limit |
+              number}}</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="grid-item4">
+    <div class="statisticsGraph">
+      <div class="graphHead">
+        <ul>
+          <li id="cardName">Money Statistics</li>
+          <li>
+            <i class="fas fa-ellipsis-h"></i>
+          </li>
+        </ul>
+      </div>
+      <div class="graphCards" *ngIf="dataFromApi!">
+        <ul>
+          <li class="totalIncome">
+            <ul>
+              <li class="cardName">Total Income</li>
+              <li class="cardValue">${{getMoneyStat.total_income.value | number}}</li>
+              <li class="cardTrend" [style.color]="getMoneyStat.total_income.trend_color"><i
+                  class="fas fa-chart-line"></i>+{{getMoneyStat.total_income.trend}}% <small>from last month</small>
+              </li>
+            </ul>
+          </li>
+          <li class="totalExpense">
+            <ul>
+              <li class="cardName">Total Expense</li>
+              <li class="cardValue">${{getMoneyStat.total_expense.value | number}}</li>
+              <li class="cardTrend" [style.color]="getMoneyStat.total_expense.trend_color"><i
+                  class="fas fa-chart-line"></i>+{{getMoneyStat.total_expense.trend}}% <small>from last month</small>
+              </li>
+            </ul>
+          </li>
+          <li class="totalInvestment">
+            <ul>
+              <li class="cardName">Total Investment</li>
+              <li class="cardValue">${{getMoneyStat.total_investment.value | number}}</li>
+              <li class="cardTrend" style="color: orange;"><i
+                  class="fas fa-chart-line"></i>+{{getMoneyStat.total_investment.trend}}% <small>from last month</small>
+              </li> <!--changed the color because yellow was not correct and niether visible  -->
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="statGraph">
+        <canvas #statisticsGraph width="700" height="300"></canvas>
+      </div>
+    </div>
+  </section>
+  <section class="grid-item5">
+    <div class="transactionHistory">
+      <div class="historyHead">
+        <ul class="mainHeadUL">
+          <li id="cardName">Transaction History</li>
+          <li>
+            <ul class="innerHeadUl">
+              <li>
+                <div class="searchBar">
+                  <button type="button"><i class="fa fa-search"></i></button>
+                  <input type="text" placeholder="Search" [(ngModel)]="searchdata" (input)="search(searchdata)">
+                </div>
+              </li>
+              <li>
+                <div class="filter">
+                  <i class="fas fa-sort-amount-up"></i>
+                  <span>Filter</span>
+                </div>
+              </li>
+              <li>
+                <div class="export">
+                  <i class="far fa-file"></i>
+                  <span>Export</span>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="historyTable" *ngIf="dataFromApi!">
+        <table>
+          <tr>
+            <th *ngFor="let item of transactionTableHeaders">{{item}}<img *ngIf="item!='Action'"
+                src="assets\Images\up-down-arrow.png" alt="arrowImage" width="8"></th>
+          </tr>
+          <tr *ngFor="let data of transactionHistoryData ; let i= index">
+            <td>{{data.date | date:'mediumDate'}}</td>
+            <td>{{data.name}}</td>
+            <td class="colouredTd">
+              <span
+                [ngClass]="data.status=='Success' ? 'greenSpan' : data.status=='Pending' ? 'orangeSpan' : 'redSpan' "
+                [style.color]="data.status=='Success' ? 'green': data.status=='Pending' ? 'orange' : 'red'">{{data.status}}</span>
+            </td>
+            <td id="lightText">{{data.type}}</td>
+            <td id="lightText">{{data.date | date:'shortTime'}}</td>
+            <td>${{data.amount | number}}</td>
+            <td><i class="fas fa-ellipsis-h" (click)="openPopUp(data)"></i></td>
+          </tr>
+        </table>
+        <div *ngIf="modalOpen" class="modal">
+          <div class="modalContent">
+            <i class="fas fa-times" (click)="modalOpen=false"></i>
+            <span>Name - {{transactionName}}</span>
+            <span>Type - {{transactionType}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</section>
